@@ -2,7 +2,9 @@ const request = require("supertest");
 const app = require("../src/app");
 const SensorReading = require("../src/models/SensorReading");
 
-jest.mock("../src/models/SensorReading");
+jest.mock("../src/models/SensorReading", () => ({
+  create: jest.fn(),
+}));
 
 describe("IoT Sensor Monitoring API", () => {
   beforeEach(() => {
