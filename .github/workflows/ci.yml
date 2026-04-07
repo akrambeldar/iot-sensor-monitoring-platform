@@ -14,6 +14,9 @@ jobs:
       run:
         working-directory: backend
 
+    env:
+      NODE_ENV: development
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -25,17 +28,21 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
 
-      - name: Show package files
+      - name: Show npm environment
         run: |
-          pwd
-          ls -la
-          cat package.json
+          node -v
+          npm -v
+          npm config get omit
+          npm config get production
 
       - name: Install dependencies including dev
-        run: npm install --include=dev
+        run: npm ci --include=dev
 
-      - name: Check Jest
+      - name: Verify Jest binary
+        run: ls -la node_modules/.bin
+
+      - name: Verify Jest version
         run: npx jest --version
 
       - name: Run tests
-        run: npm test
+        run: npx jest --runInBand --verbose
