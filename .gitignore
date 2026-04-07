@@ -1,0 +1,23 @@
+# Node
+node_modules
+npm-debug.log
+
+# Python
+venv
+__pycache__
+*.pyc
+
+# Environment files
+.env
+
+# Build
+dist
+build
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode
+
+# Docker
+postgres_data
