@@ -25,10 +25,16 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
 
-      - name: Install dependencies
-        run: npm install
+      - name: Show package files
+        run: |
+          pwd
+          ls -la
+          cat package.json
 
-      - name: Verify Jest
+      - name: Install dependencies including dev
+        run: npm install --include=dev
+
+      - name: Check Jest
         run: npx jest --version
 
       - name: Run tests
